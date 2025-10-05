@@ -1,6 +1,7 @@
 import { StudentService } from './../student-service';
 import { Component, OnInit } from '@angular/core';
 import { StudentForm } from '../student.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-index-student',
@@ -11,13 +12,10 @@ import { StudentForm } from '../student.module';
 export class IndexStudent implements OnInit {
   // ? ngOnInit méthode appelée lors de l'initialisation du composant
   ngOnInit(): void {
-  this.LoadStudentData();
+    this.LoadStudentData();
   }
 
-  constructor(private StudentService:StudentService) {
-
-  }
-
+  constructor(private StudentService: StudentService,private router:Router) {}
 
   // variable pour stocker la liste des étudiants qui est initialisée comme un tableau vide
   students: StudentForm[] = [];
@@ -36,5 +34,9 @@ export class IndexStudent implements OnInit {
     this.StudentService.DeleteStudentFromArray(id);
     this.LoadStudentData();
     alert('Student deleted successfully!');
+  }
+
+  EditStudent(id: number) {
+   this.router.navigate(['/edit-student',id]);
   }
 }
