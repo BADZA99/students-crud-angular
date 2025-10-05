@@ -1,19 +1,34 @@
-import { Component } from '@angular/core';
-import { Student } from '../student.module';
+import { StudentService } from './../student-service';
+import { Component, OnInit } from '@angular/core';
+import { StudentForm } from '../student.module';
 
 @Component({
   selector: 'app-index-student',
   standalone: false,
   templateUrl: './index-student.html',
-  styleUrl: './index-student.css'
+  styleUrl: './index-student.css',
 })
-export class IndexStudent {
-  // variable pour stocker la liste des étudiants qui est initialisée comme un tableau vide
-students: Student[]=[
-  {id:1, name:'Alice', grade:"A"},
-  {id:2, name:'Bob', grade:"B"},
-  {id:3, name:'Charlie', grade:"E"}
+export class IndexStudent implements OnInit {
+  // ? ngOnInit méthode appelée lors de l'initialisation du composant
+  ngOnInit(): void {
+  this.LoadStudentData();
+  }
 
-];
-isStudent:boolean=false;
+  constructor(private StudentService:StudentService) {
+
+  }
+
+
+  // variable pour stocker la liste des étudiants qui est initialisée comme un tableau vide
+  students: StudentForm[] = [];
+  isStudent: boolean = false;
+
+  LoadStudentData() {
+    this.students = this.StudentService.GetAllStudents();
+    if (this.students.length > 0) {
+      this.isStudent = true;
+    } else {
+      this.isStudent = false;
+    }
+  }
 }
