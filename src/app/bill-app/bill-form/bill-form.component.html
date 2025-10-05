@@ -11,7 +11,7 @@
     <table class="min-w-full">
       <thead class="border-b">
         <tr>
-          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">#</th>
+
           <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
             Name
           </th>
@@ -28,10 +28,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="border-b" *ngFor="let item of cart; let i = index">
-          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            {{ i + 1 }}
-          </td>
+        <tr class="border-b" *ngFor="let item of cart; ">
+
           <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
             {{ item.name }}
           </td>
@@ -42,14 +40,27 @@
             {{ item.price * item.quantity | currency:'usd' }}
           </td>
           <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-            <a class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-              (click)="removeItem(i)"
+            <button
+            class="bg-blue-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              (click)="decreaseQuantity(item,-1)"
             >
-              Remove
+              -
+            </button>
+            <button
+            class="bg-green-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              (click)="increaseQuantity(item,1)"
+            >
+              +
+            </button>
+            <a class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              (click)="removeItem(item)"
+            >
+              x
             </a>
+
         </tr>
       </tbody>
     </table>
-    <!-- <h3>Total: {{ getTotal() | currency:'usd' }}</h3> -->
+    <h3>Total: {{ grandTotal() | currency:'usd' }}</h3>
   </div>
 </div>

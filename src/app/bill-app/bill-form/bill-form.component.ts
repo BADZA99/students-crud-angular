@@ -34,19 +34,35 @@ export class BillFormComponent {
     }
   }
 
-  removeItem(index: number) {
-    this.cart.splice(index, 1);
+  removeItem(item: any) {
+    this.cart = this.cart.filter((cartItem) => cartItem.name !== item.name);
   }
 
-  getTotal(): number {
-    let total = 0;
-    this.cart.forEach((item) => {
-      total += item.price * item.quantity;
-    });
-    return total;
+  grandTotal(): number {
+   return this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
   }
 
+  decreaseQuantity(item: any, qty: number) {
+    if (qty > 1) {
+      item.quantity = qty - 1;
+    }
+    if (item.quantity === 1) {
+      this.removeItem(item);
+    }
+    if(item.quantity < 1 ){
+      item.quantity = 1;
+    }
+  }
 
+  increaseQuantity(item: any, qty: number) {
+    item.quantity = qty + 1;
+
+    if(item.quantity < 1 ){
+      item.quantity = 1;
+    }
+
+
+  }
 
   constructor() {}
 
