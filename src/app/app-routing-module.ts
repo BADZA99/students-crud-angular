@@ -3,10 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateStudent } from './Students/create-student/create-student';
 import { IndexStudent } from './Students/index-student/index-student';
 import { EditStudent } from './Students/edit-student/edit-student';
+import { BillFormComponent } from './bill-app/bill-form/bill-form.component';
 
 const routes: Routes = [
   {
-// route pour la page d'accueil
+    // route pour la page d'accueil
     path: '',
     component: IndexStudent,
   },
@@ -16,11 +17,13 @@ const routes: Routes = [
     component: CreateStudent,
   },
   {
-
     path: 'edit-student/:id',
     component: EditStudent,
   },
-
+  {
+    path: 'bill-app',
+    component: BillFormComponent,
+  },
 ];
 
 @NgModule({
