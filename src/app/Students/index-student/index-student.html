@@ -1,1 +1,49 @@
-<p>index-student works!</p>
+  <div class="overflow-hidden">
+        <!-- ! ceci permet d'afficher un message si la liste des étudiants est vide -->
+        <ng-template #norecord>
+          <span class="text-center text-red-500 font-bold text-4xl">No Records Found
+
+          </span>
+        </ng-template>
+        <!-- ! ceci permet d'afficher la liste des étudiants dans un tableau -->
+        <table class="min-w-full"
+        *ngIf=" students && students.length>0; else norecord"
+        >
+          <thead class="border-b">
+            <tr>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">#</th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Name
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Grade
+              </th>
+              <th>
+                action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b" *ngFor="let student of students; let i = index">
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                {{ i + 1 }}
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                {{ student.name }}
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                {{ student.grade }}
+              </td>
+              <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+                  Edit
+                </button>
+                <button
+
+                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                  Delete
+                </button>
+            </tr>
+          </tbody>
+        </table>
+      </div>
