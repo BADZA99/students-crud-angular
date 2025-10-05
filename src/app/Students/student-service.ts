@@ -28,4 +28,14 @@ export class StudentService {
     }
     this.students.push(newStudent);
   }
+
+  DeleteStudentFromArray(id: number) {
+    const index = this.students.findIndex((student) => student.id === id);
+    //  La méthode findIndex retourne -1 si aucun élément correspondant n'est trouvé dans le tableau.
+    if (index !== -1 && index !== undefined) {
+      // La méthode splice est utilisée pour supprimer ou remplacer des éléments dans un tableau(index de départ, nombre d'éléments à supprimer a partir de cet index)
+      this.students.splice(index, 1);
+    }
+  }
+
 }

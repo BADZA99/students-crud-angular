@@ -31,4 +31,10 @@ export class IndexStudent implements OnInit {
       this.isStudent = false;
     }
   }
+
+  DeleteStudent(id: number) {
+    this.StudentService.DeleteStudentFromArray(id);
+    this.LoadStudentData();
+    alert('Student deleted successfully!');
+  }
 }
